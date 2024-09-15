@@ -11,15 +11,19 @@ import { formatCurrency } from './utils';
 
 export async function fetchRevenue() {
   try {
+
+    
     // Artificially delay a response for demo purposes.
     // Don't do this in production :)
 
-    // console.log('Fetching revenue data...');
+    console.log('Fetching revenue data...');
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue>`SELECT * FROM revenue`;
 
     // console.log('Data fetch completed after 3 seconds.');
+
+    
 
     return data.rows;
   } catch (error) {
@@ -48,6 +52,7 @@ export async function fetchLatestInvoices() {
   }
 }
 
+
 export async function fetchCardData() {
   try {
     // You can probably combine these into a single SQL query
@@ -65,6 +70,10 @@ export async function fetchCardData() {
       customerCountPromise,
       invoiceStatusPromise,
     ]);
+    // console.log(data[0]);
+    // console.log(data[1]);
+    // console.log(data[2]);
+    
 
     const numberOfInvoices = Number(data[0].rows[0].count ?? '0');
     const numberOfCustomers = Number(data[1].rows[0].count ?? '0');
